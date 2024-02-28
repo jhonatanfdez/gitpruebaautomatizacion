@@ -17,4 +17,4 @@ jobs:
     - name: Instalación de dependencias
       run: npm install
     - name: Construcción
-      run: npm run dev
+      run: npm run dev 
