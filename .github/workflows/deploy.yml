@@ -1,0 +1,26 @@
+name: Despliegue
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Establecer conexión SSH y ejecutar comandos
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }} # Opcional, si usas un puerto diferente al estándar (22)
+          script: |
+            cd /ruta/del/proyecto
+            npm install
+            npm run build # O cualquier otro comando que necesites ejecutar
